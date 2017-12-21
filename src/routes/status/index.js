@@ -1,5 +1,5 @@
-const pkg = require('./package.json');
-
+let pkg = require('./package.json');
+pkg.version =  process.env.APPVERSION || '0.0.1';
 export function register(server, options, next) {
   server.route({
     method: 'GET',
