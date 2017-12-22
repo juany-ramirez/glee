@@ -39,3 +39,16 @@ services:
       - DBNAME_PROD
       - DBUSER_PROD
       - DBPASS_PROD
+  terraform:
+    build:
+      context: .
+      dockerfile: dockerfile-terraform
+    volumes:
+      - .:/usr/src/app
+      - /usr/bin/buildkite-agent:/usr/bin/buildkite-agent
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_ACCESS_KEY_ID_PROD
+      - AWS_SECRET_ACCESS_KEY_PROD
+      - ENVIRONMENT    
