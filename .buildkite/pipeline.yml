@@ -1,9 +1,9 @@
 steps:
   - name: ':terraform: Build'
     command: '/.buildkite/terraform-ecs.sh'
-    #env:
-      #BUILDKITE_DOCKER_COMPOSE_CONTAINER: terraform
-      #BUILDKITE_DOCKER_COMPOSE_FILE: docker-compose.buildkite.yml
+    env:
+      BUILDKITE_DOCKER_COMPOSE_CONTAINER: terraform
+      BUILDKITE_DOCKER_COMPOSE_FILE: docker-compose.buildkite.yml
     agents:
       queue: 'elastic'
 
@@ -11,6 +11,7 @@ steps:
 
   - name: ':hammer: Build'
     command: '/.buildkite/build.sh'
+    branches: 'develop staging master'
     agents:
       queue: 'elastic' 
 
@@ -19,6 +20,7 @@ steps:
     env:
       BUILDKITE_DOCKER_COMPOSE_CONTAINER: app
       BUILDKITE_DOCKER_COMPOSE_FILE: docker-compose.buildkite.yml
+    branches: 'develop staging master'  
     agents:
       queue: 'elastic'
 

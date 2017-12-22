@@ -1,0 +1,5 @@
+FROM hashicorp/terraform:0.11.1
+# Create app directory
+WORKDIR /usr/src/app
+
+CMD [ "terraform", "--version" ]
