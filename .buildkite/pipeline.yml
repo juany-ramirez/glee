@@ -7,7 +7,7 @@ steps:
     agents:
       queue: 'elastic'
 
-  -wait
+  - wait
 
   - name: ':hammer: Build'
     command: '/.buildkite/build.sh'
