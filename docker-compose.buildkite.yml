@@ -40,7 +40,9 @@ services:
       - DBUSER_PROD
       - DBPASS_PROD
   terraform:
-    image: acklenavenue/amazonlinux-terraform:0.11.1  
+    build:
+      context: .
+      dockerfile: dockerfile-terraform
     volumes:
       - .:/usr/src/app
       - /usr/bin/buildkite-agent:/usr/bin/buildkite-agent
