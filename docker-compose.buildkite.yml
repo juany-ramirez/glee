@@ -51,4 +51,8 @@ services:
       - AWS_SECRET_ACCESS_KEY
       - AWS_ACCESS_KEY_ID_PROD
       - AWS_SECRET_ACCESS_KEY_PROD
+      - APPNAME
+      - APPNAME_PROD
+      - AWS_REGION_PROD
+      - AWS_REGION
       - ENVIRONMENT    
