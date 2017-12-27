@@ -1,1 +1,1 @@
-app_name = $APPNAME
+app_name = ${env.APPNAME}
