@@ -6,7 +6,7 @@ cd terraform/aws/backend
 terraform init -input=false
 echo "--- Create Workspace for $ENVIRONMENT"
 set +e
-terraformmessage=$(terraform workspace new $ENVIRONMENT 2>/dev/null)
+terraformmessage=$(terraform workspace new $ENVIRONMENT)
 echo $?
 set -e
 if [ "$terraformmessage" == "Workspace \"$ENVIRONMENT\" already exists" ]; then
