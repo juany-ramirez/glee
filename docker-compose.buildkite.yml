@@ -42,7 +42,7 @@ services:
   terraform:
     build:
       context: .
-      dockerfile: dockerfile-terraform
+    image: acklenavenue/amazonlinux-terraform:0.11.1  
     volumes:
       - .:/usr/src/app
       - /usr/bin/buildkite-agent:/usr/bin/buildkite-agent
