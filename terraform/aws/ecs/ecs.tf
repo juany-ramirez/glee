@@ -10,5 +10,5 @@ provider "aws" {
 }
 
 resource "aws_ecr_repository" "repository" {
-  name = app_name
+  name = ${var.app_name}
 }
