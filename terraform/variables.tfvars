@@ -1,1 +1,1 @@
-app_name = "bar_app"
+app_name = $APPNAME
