@@ -7,6 +7,7 @@ terraform init -input=false
 echo "--- Create Workspace for $ENVIRONMENT"
 set +e
 terraformmessage=$(terraform workspace new $ENVIRONMENT 2>&1 1>/dev/null)
+echo $?
 set -e
 if [ $? -eq 0 ]; then
    echo $?
