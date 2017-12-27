@@ -5,6 +5,9 @@ terraform {
     region = "us-east-1"
   }
 }
+provider "aws" {
+  region     = "us-east-1"
+}
 
 resource "aws_ecr_repository" "repository" {
   name = "bar"
