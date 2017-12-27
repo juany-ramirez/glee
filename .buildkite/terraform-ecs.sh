@@ -3,6 +3,7 @@
 set -eo pipefail
 echo "--- Init Terraform Backend"
 export TF_VAR_APPNAME=$APPNAME
+env
 cd terraform/aws/ecs
 terraform init -input=false
 echo "--- Create Workspace for $ENVIRONMENT"
