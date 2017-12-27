@@ -14,8 +14,9 @@ if [ $terraformstatuscode -eq 0 ]; then
    echo "not right now !!! $terraformmessage"
    exit 0
 else
-  echo $terraformstatuscode  
-  if [[ "$terraformmessage" == "Workspace \"dev\" already exists" ]]; then
+  echo $terraformstatuscode
+  REGEX="already exists"  
+  if [[ $terraformmessage =~ $REGEX ]]; then
     echo "GOOOD TO GO!!! $terraformmessage"
     exit 0
   else
