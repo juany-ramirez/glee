@@ -40,8 +40,6 @@ services:
       - DBUSER_PROD
       - DBPASS_PROD
   terraform:
-    build:
-      context: .
     image: acklenavenue/amazonlinux-terraform:0.11.1  
     volumes:
       - .:/usr/src/app
