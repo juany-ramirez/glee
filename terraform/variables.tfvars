@@ -1,1 +1,1 @@
-app_name = ${env.APPNAME}
+app_name = ${process.env.APPNAME}
