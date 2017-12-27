@@ -2,6 +2,7 @@
 
 set -eo pipefail
 echo "--- Init Terraform Backend"
+export TF_VAR_APPNAME=$APPNAME
 cd terraform/aws/ecs
 terraform init -input=false
 echo "--- Create Workspace for $ENVIRONMENT"
@@ -10,6 +11,6 @@ chmod +x ../../../.buildkite/terraform-create-workspace.sh
 echo "--- Select Workspace for $ENVIRONMENT"
 terraform workspace select $ENVIRONMENT
 echo "--- Plan for $ENVIRONMENT"
-terraform plan -var-file="../../variables.tfvars" -out=tfplan -input=false
+terraform plan -out=tfplan -input=false
 echo "--- Apply for $ENVIRONMENT"
 terraform apply -input=false tfplan
