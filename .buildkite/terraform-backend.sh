@@ -11,16 +11,15 @@ terraformstatuscode=$?
 set -e
 if [ $terraformstatuscode -eq 0 ]; then
    echo $terraformstatuscode
-   echo "not right now !!! $terraformmessage"
+   echo "$terraformmessage"
    exit 0
 else
-  echo $terraformstatuscode
   REGEX="already exists"  
   if [[ $terraformmessage =~ $REGEX ]]; then
-    echo "GOOOD TO GO!!! $terraformmessage"
+    echo "GOOD TO GO -> $terraformmessage"
     exit 0
   else
-    echo "ERROR!!!! $terraformmessage"
+    echo "$terraformmessage"
     exit $terraformstatuscode  
   fi
 fi
