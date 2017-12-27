@@ -15,7 +15,7 @@ if [ $terraformstatuscode -eq 0 ]; then
    exit 0
 else
   echo $terraformstatuscode  
-  if [[ $terraformmessage == "Workspace \"dev\" already exists" ]]; then
+  if [[ "$terraformmessage" == "Workspace \"dev\" already exists" ]]; then
     echo "GOOOD TO GO!!! $terraformmessage"
     exit 0
   else
