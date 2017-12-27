@@ -1,10 +1,6 @@
 #!/bin/bash
 
 set -eo pipefail
-echo "--- Init Terraform Backend"
-cd terraform/aws/backend
-terraform init -input=false
-echo "--- Create Workspace for $ENVIRONMENT"
 set +e
 terraformmessage=$(terraform workspace new $ENVIRONMENT 2>&1 1>/dev/null)
 terraformstatuscode=$?
