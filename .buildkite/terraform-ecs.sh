@@ -12,4 +12,4 @@ terraform workspace select $ENVIRONMENT
 echo "--- Plan for $ENVIRONMENT"
 terraform plan -out=tfplan -input=false
 echo "--- Apply for $ENVIRONMENT"
-terraform apply -var-file="../variables.tfvars" -input=false tfplan
+terraform apply -var-file="../../variables.tfvars" -input=false tfplan
