@@ -1,3 +1,5 @@
+variable "app_name" {}
+
 terraform {
   backend "s3" {
     bucket = "acklen-terraform-state"
