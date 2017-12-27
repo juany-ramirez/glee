@@ -1,4 +1,14 @@
 steps:
+  - name: ':terraform: Create Workspace'
+    command: '/.buildkite/terraform-ecs.sh'
+    env:
+      BUILDKITE_DOCKER_COMPOSE_CONTAINER: terraform
+      BUILDKITE_DOCKER_COMPOSE_FILE: docker-compose.buildkite.yml
+    agents:
+      queue: 'elastic'
+
+  - wait
+
   - name: ':terraform: Build'
     command: '/.buildkite/terraform-ecs.sh'
     env:

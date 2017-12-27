@@ -2,4 +2,6 @@ FROM acklenavenue/amazonlinux-terraform:0.11.1
 # Create app directory
 WORKDIR /usr/src/app
 
+COPY terraform/** ./
+
 CMD [ "aws", "--version" ]
