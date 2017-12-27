@@ -7,14 +7,18 @@ terraform init -input=false
 echo "--- Create Workspace for $ENVIRONMENT"
 set +e
 terraformmessage=$(terraform workspace new $ENVIRONMENT 2>&1 1>/dev/null)
-echo $?
-echo $terraformmessage
 set -e
-if [ "$terraformmessage" == "Workspace \"$ENVIRONMENT\" already exists" ]; then
-   echo "Workspace $ENVIRONMENT already exists"
+if [ $? -eq 0 ]; then
+   echo $terraformmessage
    exit 0
 else
-  echo $terraformmessage
-  #exit 1
+  echo $?  
+  if [[ $terraformmessage == "already exists" ]]; then
+    echo "GOOOD TO GO!!! $terraformmessage"
+    exit 0
+  else
+    echo "ERROR!!!! $terraformmessage"
+    exit $?  
+  fi
 fi
 
