@@ -9,7 +9,7 @@ steps:
 
   - wait
 
-  - name: ':terraform: Build'
+  - name: ':terraform: Provision ECS'
     command: '/.buildkite/terraform-ecs.sh'
     env:
       BUILDKITE_DOCKER_COMPOSE_CONTAINER: terraform
