@@ -4,7 +4,7 @@ set -eo pipefail
 echo "--- Init Terraform Backend"
 export TF_VAR_APPNAME=$APPNAME
 cd terraform/aws/ecs
-terraform init -input=false
+terraform init -input=false -backend-config="key=$APPNAME/ecs"
 echo "--- Create Workspace for $ENVIRONMENT"
 chmod +x ../../../.buildkite/terraform-create-workspace.sh
 ../../../.buildkite/terraform-create-workspace.sh

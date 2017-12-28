@@ -1,7 +1,6 @@
 terraform {
   backend "s3" {
     bucket = "acklen-terraform-state"
-    key    = "${var.APPNAME}/eb-application"
     region = "us-east-1"
   }
 }
