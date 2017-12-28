@@ -56,7 +56,7 @@ resource "aws_nat_gateway" "natgw" {
   }
 }
 
-resource "aws_route_table" "rt-private" {
+resource "aws_route_table" "rtpulbic" {
   depends_on = ["aws_internet_gateway.gw"]
   vpc_id = "${aws_vpc.main.id}"  
   route {
@@ -82,4 +82,16 @@ resource "aws_route_table" "rtprivate" {
     Project = "${var.APPNAME}"
     Environment = "${terraform.workspace}"
   }
+}
+
+resource "aws_route_table_association" "rtspublic" {
+  count = "${length(aws_subnet.main.*.id)/2}"
+  subnet_id      = "${element(aws_subnet.main.*.id,count.index * 2)}"
+  route_table_id = "${aws_route_table.rtpulbic.id}"
+}
+
+resource "aws_route_table_association" "rtsprivate" {
+  count = "${length(aws_subnet.main.*.id)/2}"
+  subnet_id      = "${element(aws_subnet.main.*.id,count.index + 1 + count.index)}"
+  route_table_id = "${aws_route_table.rtprivate.id}"
 }
