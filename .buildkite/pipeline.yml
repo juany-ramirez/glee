@@ -13,7 +13,15 @@ steps:
       BUILDKITE_DOCKER_COMPOSE_CONTAINER: terraform
       BUILDKITE_DOCKER_COMPOSE_FILE: docker-compose.buildkite.yml
     agents:
-      queue: 'elastic'    
+      queue: 'elastic'
+
+  - name: ':terraform: Provision VPC'
+    command: '/.buildkite/terraform-vpc.sh'
+    env:
+      BUILDKITE_DOCKER_COMPOSE_CONTAINER: terraform
+      BUILDKITE_DOCKER_COMPOSE_FILE: docker-compose.buildkite.yml
+    agents:
+      queue: 'elastic'        
 
   - wait
 
