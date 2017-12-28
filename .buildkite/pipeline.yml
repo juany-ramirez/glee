@@ -1,6 +1,7 @@
 steps:
   - name: ':terraform: Provision ECS'
     command: '/.buildkite/terraform-ecs.sh'
+    branches: 'develop staging master'
     env:
       BUILDKITE_DOCKER_COMPOSE_CONTAINER: terraform
       BUILDKITE_DOCKER_COMPOSE_FILE: docker-compose.buildkite.yml
@@ -9,6 +10,7 @@ steps:
 
   - name: ':terraform: Provision Elastic Beanstalk Application'
     command: '/.buildkite/terraform-ebapplication.sh'
+    branches: 'develop staging master'
     env:
       BUILDKITE_DOCKER_COMPOSE_CONTAINER: terraform
       BUILDKITE_DOCKER_COMPOSE_FILE: docker-compose.buildkite.yml

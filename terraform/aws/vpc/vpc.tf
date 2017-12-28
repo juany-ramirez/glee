@@ -23,7 +23,7 @@ resource "aws_subnet" "main" {
   cidr_block = "${element(keys(var.SUBNETS),count.index)}"
   availability_zone = "${element(var.SUBNETS[element(keys(var.SUBNETS),count.index)],0)}"
   tags {
-    Name = "${var.APPNAME}-${terraform.workspace}-subnet"
+    Name = "${var.APPNAME}-${terraform.workspace}-${element(var.SUBNETS[element(keys(var.SUBNETS),count.index)],0)}-${element(var.SUBNETS[element(keys(var.SUBNETS),count.index)],1)}"
     Project = "${var.APPNAME}"
     Environment = "${terraform.workspace}"
   }
