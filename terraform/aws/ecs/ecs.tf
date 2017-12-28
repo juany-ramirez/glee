@@ -1,9 +1,7 @@
-variable "APPNAME" {}
-
 terraform {
   backend "s3" {
     bucket = "acklen-terraform-state"
-    key    = "glee-backend/ecs"
+    key    = "${var.APPNAME}/ecs"
     region = "us-east-1"
   }
 }
