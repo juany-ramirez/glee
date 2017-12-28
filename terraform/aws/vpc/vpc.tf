@@ -17,13 +17,13 @@ resource "aws_vpc" "main" {
   }
 }
 
-resource "aws_subnet" "public" {
+resource "aws_subnet" "main" {
   vpc_id     = "${aws_vpc.main.id}"
   count    = "${length(var.SUBNETS)}"
-  cidr_block = "${keys(var.SUBNETS)[count.index]}"
-  availability_zone = "${var.SUBNETS[keys(var.SUBNETS)[count.index]][0]}"
+  cidr_block = "${element(keys(var.SUBNETS),count.index)}"
+  availability_zone = "${element(var.SUBNETS[element(keys(var.SUBNETS),count.index)],0)}"
   tags {
-    Name = "${var.APPNAME}-${terraform.workspace}-subnet-${var.SUBNETS[keys(var.SUBNETS)[count.index]][1]}"
+    Name = "${var.APPNAME}-${terraform.workspace}-subnet"
     Project = "${var.APPNAME}"
     Environment = "${terraform.workspace}"
   }
