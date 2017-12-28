@@ -55,3 +55,29 @@ resource "aws_nat_gateway" "natgw" {
     Environment = "${terraform.workspace}"
   }
 }
+
+resource "aws_route_table" "rt-private" {
+  depends_on = ["aws_internet_gateway.gw"]
+  vpc_id = "${aws_vpc.main.id}"  
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.gw.id}"
+  tags {
+    Name = "${var.APPNAME}-${terraform.workspace}-rt-public"
+    Project = "${var.APPNAME}"
+    Environment = "${terraform.workspace}"
+  }
+}
+
+resource "aws_route_table" "rtprivate" {
+  depends_on = ["aws_internet_gateway.gw"]
+  vpc_id = "${aws_vpc.main.id}"  
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id  = "${aws_nat_gateway.natgw.id}"
+  tags {
+    Name = "${var.APPNAME}-${terraform.workspace}-rt-private"
+    Project = "${var.APPNAME}"
+    Environment = "${terraform.workspace}"
+  }
+}
