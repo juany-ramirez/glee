@@ -1,15 +1,15 @@
-const request = require("request");
+const request = require('request');
 // const exec = require('child_process').exec;
-const { defineSupportCode } = require("cucumber");
+const { defineSupportCode } = require('cucumber');
 
-const baseUrl = "http://localhost:8000";
+const baseUrl = 'http://localhost:8000';
 
 function CustomWorld() {
   this.request = request;
   this.get = (uri, headers) =>
     request.get({
       url: baseUrl + uri,
-      headers
+      headers,
     });
 
   this.context = {};

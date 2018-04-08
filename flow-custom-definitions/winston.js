@@ -1,3 +1,3 @@
-declare module "winston" {
+declare module 'winston' {
   declare module.exports: any;
 }

@@ -1,112 +1,112 @@
-import Joi from "joi";
-import { EncounterModel } from "../../domain/validators/encounter.schema";
+import Joi from 'joi';
+import { EncounterModel } from '../../domain/validators/encounter.schema';
 
-import type { Command } from "../../domain/types/encounter";
+import type { Command } from '../../domain/types/encounter';
 
 const headersValidation = Joi.object({
-  authorization: Joi.string()
+  authorization: Joi.string(),
 }).options({ allowUnknown: true });
 
 export function register(server: Object, options: Object, next: () => mixed) {
   const dispatch = (cmd: Command) =>
-    new Promise(resolve => {
-      server.app.dispatcher.dispatch(cmd).subscribe(response => {
+    new Promise((resolve) => {
+      server.app.dispatcher.dispatch(cmd).subscribe((response) => {
         resolve(response);
       });
     });
   server.route([
     {
-      method: "GET",
-      path: "/encounters",
+      method: 'GET',
+      path: '/encounters',
       config: {
-        auth: "jwt",
-        tags: ["api"],
+        auth: 'jwt',
+        tags: ['api'],
         handler: (request, reply) => {
           reply(
             dispatch({
-              type: "getAllEncounters",
-              userId: request.auth.credentials.id
-            })
+              type: 'getAllEncounters',
+              userId: request.auth.credentials.id,
+            }),
           );
         },
         validate: {
-          headers: headersValidation
-        }
-      }
+          headers: headersValidation,
+        },
+      },
     },
     {
-      method: "GET",
-      path: "/encounters/{id}",
+      method: 'GET',
+      path: '/encounters/{id}',
       config: {
-        auth: "jwt",
-        tags: ["api"],
+        auth: 'jwt',
+        tags: ['api'],
         handler: (request, reply) => {
-          reply(dispatch({ type: "getOneEncounter", id: request.params.id }));
+          reply(dispatch({ type: 'getOneEncounter', id: request.params.id }));
         },
         validate: {
           headers: headersValidation,
           params: {
             id: Joi.number()
               .required()
-              .description("the id for the encounter")
-          }
-        }
-      }
+              .description('the id for the encounter'),
+          },
+        },
+      },
     },
     {
-      method: "DELETE",
-      path: "/encounters/{id}",
+      method: 'DELETE',
+      path: '/encounters/{id}',
       config: {
-        auth: "jwt",
-        tags: ["api"],
+        auth: 'jwt',
+        tags: ['api'],
         handler: (request, reply) => {
-          reply(dispatch({ type: "removeEncounter", id: request.params.id }));
+          reply(dispatch({ type: 'removeEncounter', id: request.params.id }));
         },
         validate: {
           headers: headersValidation,
           params: {
             id: Joi.number()
               .required()
-              .description("the id for the encounter")
-          }
-        }
-      }
+              .description('the id for the encounter'),
+          },
+        },
+      },
     },
     {
-      method: "POST",
-      path: "/encounters",
+      method: 'POST',
+      path: '/encounters',
       config: {
-        auth: "jwt",
-        tags: ["api"],
+        auth: 'jwt',
+        tags: ['api'],
         handler: (request, reply) => {
           reply(
             dispatch({
-              type: "createEncounter",
-              name: "purple-urple",
+              type: 'createEncounter',
+              name: 'purple-urple',
               age: 25,
-              bloodType: "B+"
-            })
+              bloodType: 'B+',
+            }),
           );
         },
         validate: {
           headers: headersValidation,
-          payload: EncounterModel
-        }
-      }
+          payload: EncounterModel,
+        },
+      },
     },
     {
-      method: "PUT",
-      path: "/encounters/{id}",
+      method: 'PUT',
+      path: '/encounters/{id}',
       config: {
-        auth: "jwt",
-        tags: ["api"],
+        auth: 'jwt',
+        tags: ['api'],
         handler: (request, reply) => {
           reply(
             dispatch({
-              type: "modifyEncounter",
+              type: 'modifyEncounter',
               id: request.params.id,
-              modify: { name: "cambióaaaaaaa", age: 40 }
-            })
+              modify: { name: 'cambióaaaaaaa', age: 40 },
+            }),
           );
         },
         validate: {
@@ -115,14 +115,14 @@ export function register(server: Object, options: Object, next: () => mixed) {
           params: {
             id: Joi.number()
               .required()
-              .description("the id for the encounter")
-          }
-        }
-      }
-    }
+              .description('the id for the encounter'),
+          },
+        },
+      },
+    },
   ]);
 
   next();
 }
 
-exports.register.attributes = require("./package.json");
+exports.register.attributes = require('./package.json');

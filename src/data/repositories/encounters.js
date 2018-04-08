@@ -1,6 +1,5 @@
-import type Encounter from "../../domain/types/encounter";
-import type { Encounter } from "../../domain/types/encounter";
-import type { Repository, Model, Error } from "../../domain/types/common";
+import type { Encounter } from '../../domain/types/encounter';
+import type { Repository, Model, Error } from '../../domain/types/common';
 
 export default class Encounters implements Repository<number, Encounter> {
   model: Model<number, Encounter>;
@@ -9,7 +8,7 @@ export default class Encounters implements Repository<number, Encounter> {
   }
 
   getAll(): Promise<Array<Encounter>> {
-    return this.model.findAll({ order: ["id"] });
+    return this.model.findAll({ order: ['id'] });
   }
 
   getById(id: number): Promise<Encounter> {
@@ -25,22 +24,17 @@ export default class Encounters implements Repository<number, Encounter> {
       .update(encounter, {
         where: { id },
         returning: true,
-        plain: true
+        plain: true,
       })
-      .then(
-        (result: any) =>
-          ((result && result[1]
-            ? result[1]
-            : { error: "Encounter not found" }): Error)
-      )
-      .catch(() => ({ error: "Encounter not found" }: Error));
+      .then((result: any) => ((result && result[1] ? result[1] : { error: 'Encounter not found' }): Error))
+      .catch(() => ({ error: 'Encounter not found' }: Error));
   }
 
   delete(id: number): Promise<number> {
     return this.model.destroy({
       where: {
-        id
-      }
+        id,
+      },
     });
   }
 }

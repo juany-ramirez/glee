@@ -3,9 +3,9 @@ import type {
   GetOneEncounterCommand,
   RemoveEncounterCommand,
   CreateEncounterCommand,
-  UpdateEncounterCommand
-} from "../types/encounter";
-import type { CommandHandler, Repository } from "../types/common";
+  UpdateEncounterCommand,
+} from '../types/encounter';
+import type { CommandHandler, Repository } from '../types/common';
 
 export default class Encounters implements CommandHandler {
   repository: Repository<number, Encounter>;
