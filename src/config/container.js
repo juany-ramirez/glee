@@ -3,9 +3,11 @@ import db from '../models';
 
 const container = awilix.createContainer();
 
-Object.keys(db).filter((key) => key.toLowerCase() !== 'sequelize').forEach((model) => {
-  container.registerValue(`${model.toLowerCase()}Model`, db[model]);
-});
+Object.keys(db)
+  .filter((key) => key.toLowerCase() !== 'sequelize')
+  .forEach((model) => {
+    container.registerValue(`${model.toLowerCase()}Model`, db[model]);
+  });
 
 container.loadModules([`${__dirname}/../domain/command-handlers/*.js`], {
   formatName: (name, descriptor) => `${descriptor.value.name}Handler`,

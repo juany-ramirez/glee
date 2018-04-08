@@ -4,7 +4,7 @@ import * as mototaxi from 'mototaxi';
 import container from '../container';
 import { commandHandlers } from '../../domain';
 
-export function register(server, options, next) {
+export function register(server: Object, options: Object, next: () => mixed) {
   const logger = {
     log: (message) => {
       console.log(`mototaxi: ${message}`);
