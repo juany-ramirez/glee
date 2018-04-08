@@ -1,4 +1,4 @@
-const hapiAuthJwt = require('hapi-auth-jwt2');
+const hapiAuthJwt = require("hapi-auth-jwt2");
 
 export function register(server, options, next) {
   const validate = (decoded, request, callback) => {
@@ -16,22 +16,20 @@ export function register(server, options, next) {
     return callback(null, true);
   };
 
-
-  server.register(hapiAuthJwt, (err) => {
+  server.register(hapiAuthJwt, err => {
     if (err) {
       throw new Error(err);
     }
 
-    server.auth.strategy('jwt', 'jwt',
-      {
-        key: process.env.AUTH_SHARED_KEY || 'NeverShareYourSecret',
-        validateFunc: validate,
-        verifyOptions: { algorithms: ['HS256'] },
-      });
+    server.auth.strategy("jwt", "jwt", {
+      key: process.env.AUTH_SHARED_KEY || "NeverShareYourSecret",
+      validateFunc: validate,
+      verifyOptions: { algorithms: ["HS256"] }
+    });
 
-    server.auth.default('jwt');
+    server.auth.default("jwt");
     next();
   });
 }
 
-exports.register.attributes = { name: 'auth', version: '1.0.0' };
+exports.register.attributes = { name: "auth", version: "1.0.0" };
