@@ -3,7 +3,7 @@ version: "2"
 services:
   web:
     build: .
-    command: nodemon --inspect=0.0.0.0:9229 ./dist/server.js
+    command: nodemon -L --exec "npm run startdebug" --watch src
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
@@ -18,7 +18,7 @@ services:
       - PG_USER=todoapp
       - PG_PASSWORD=todopass
       - PG_DATABASE=todos
-      - PG_HOST=postgres 
+      - PG_HOST=postgres
   postgres:
     image: postgres:9.6.2-alpine
     environment:

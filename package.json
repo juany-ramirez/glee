@@ -79,6 +79,8 @@
     "build": "babel src --out-dir dist --source-maps inline --copy-files",
     "prestart": "npm run build",
     "start": "node ./dist/server.js",
+    "prestartdebug": "npm run build",
+    "startdebug": "node --inspect=0.0.0.0:9229 ./dist/server.js",
     "predebug": "npm run build",
     "debug": "nodemon --inspect=0.0.0.0:9229 ./dist/server.js",
     "aat": "./node_modules/cucumber/bin/cucumber.js",

@@ -2,11 +2,18 @@
 <PROJECT_ROOT>/coverage/.*
 <PROJECT_ROOT>/dist/.*
 <PROJECT_ROOT>/node_modules/.*
+<PROJECT_ROOT>/features/.*
+<PROJECT_ROOT>/src/migrations/.*
+<PROJECT_ROOT>/__tests__/.*
+<PROJECT_ROOT>/gulpfile.js
+<PROJECT_ROOT>/wallaby.js
 
 [include]
-./src/*.js
 
 [libs]
+./flow-typed
+./flow-custom-definitions
 
 [options]
 suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+all=true
